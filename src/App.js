@@ -1,14 +1,16 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
 import './App.css';
 import Forecaster from './components/Forecaster';
+import MainMap from './components/MainMap';
 
 
 class App extends Component {
   render() {
   return (
-   
-   <Forecaster />
+    <div>
+        <Forecaster />
+        <MainMap />
+    </div>
   )
 }
 }
