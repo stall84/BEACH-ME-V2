@@ -9,10 +9,26 @@ class LandingPage extends Component {
         super(props) 
 
         this.state = {
-            zip: '',
-            lat: '',
-            lng: '',
+          lat: null,
+          lng: null
         }
+    }
+
+    componentDidMount () {
+        if (navigator.geolocation) {
+            navigator.geolocation.getCurrentPosition((position) => {
+             console.log(position)
+             // This method of pushing the user's lat/long into state is working during 
+             // initial tests. Things I've found online though make me think it's an async call
+             // and might need some other proving logic other than the if statement at very beginning 
+             this.setState({
+                 lat: position.coords.latitude,
+                 lng: position.coords.longitude
+             })
+                
+        
+       });
+    }
     }
 
     render() {
