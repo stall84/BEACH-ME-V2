@@ -6,13 +6,12 @@ const mapStyles = {
     height: '86%'
 }
 
-const home = {
-    lat: 33.7717,
-    lng: -84.3523
-}
+
+class MainMapContainer extends Component {
+
+    
 
 
-class MainMap extends Component {
     render() {
         return (
             <div className="MapHolder">
@@ -21,8 +20,9 @@ class MainMap extends Component {
                     zoom={9}
                     style={mapStyles}
                     initialCenter={{ lat:33.79, lng: -84.35 }}
+                    
                 >
-                    <Marker position={home} />
+                    <Marker />
                 </Map>
             </div>
         )
@@ -30,5 +30,6 @@ class MainMap extends Component {
 }
 
 export default GoogleApiWrapper({
+    libraries: ['drawing','places'],
     apiKey: process.env.REACT_APP_GOOGLE_API_KEY
-})(MainMap);
+})(MainMapContainer);

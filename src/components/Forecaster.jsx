@@ -14,7 +14,7 @@ class Forecaster extends Component {
             <div>
                 HI! 
                 <br/>
-                ONE AWESOME BEACH-ME APP OTW
+                ONE VERY AWESOME BEACH-ME APP OTW
                 
 
             </div>
