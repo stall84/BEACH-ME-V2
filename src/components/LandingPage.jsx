@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Carousel from './Carousel';
+import Header from './Header';
 import './styles/LandingPage.css';
 
 
@@ -34,16 +36,19 @@ class LandingPage extends Component {
     render() {
         return (
             <div>
-               <Carousel />
-               <div className="zipCodeForm">
-                <form>
-                    <div className="form-row">
-                        <div className="col-12">
-                        <input type="text" className="form-control" placeholder="Enter ZipCode and hit enter - Or simply click buttons for auto-location-finding" />
+                <div className="headerCont">
+                    <Header />
+                </div>
+                <Carousel />
+                <div className="zipCodeForm">
+                    <form>
+                        <div className="form-row">
+                            <div className="col-12">
+                            <input type="text" className="form-control" placeholder="Enter ZipCode and hit enter - Or simply click buttons for auto-location-finding" />
+                            </div>
                         </div>
-                    </div>
-                </form>
-               </div>
+                    </form>
+                </div>
                 <div className="inputButtons">
                     <button type="button" className="btn btn-outline-info btn-lg">Local Weather</button>
                     <button type="button" className="btn btn-outline-warning btn-lg">Plz BEACH ME!</button>
@@ -53,4 +58,15 @@ class LandingPage extends Component {
     }
 }
 
+// Setting up React-Redux mappings (state/props)
+
+/*
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCoords: () => {
+            return dispatch({ type: 'ADD_COORDS', payload: {state}})
+        }
+    }
+}
+*/
 export default LandingPage;

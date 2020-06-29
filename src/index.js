@@ -2,16 +2,31 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import App from './App';
+import { Provider } from 'react-redux'
+import { createStore } from 'redux';
+
 import * as serviceWorker from './serviceWorker';
 
 
 // Initial Location of our Redux Store and Initial State
 
+const initialState = {
+  lat: 33.79,
+  lng: -84.35
+}
 
+
+const reducer = (state = initialState, action) => {
+  console.log(initialState)
+}
+
+const store = createStore(reducer)
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store} >
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root')
 );

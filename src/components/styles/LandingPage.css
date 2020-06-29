@@ -4,3 +4,7 @@
     display: flex;
     justify-content: space-evenly;
 }
+
+.zipCodeForm {
+    margin: 1rem auto;
+}
