@@ -4,6 +4,11 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
+
+// Initial Location of our Redux Store and Initial State
+
+
+
 ReactDOM.render(
   <React.StrictMode>
     <App />
