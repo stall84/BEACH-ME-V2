@@ -1,14 +1,13 @@
 import React, { Component } from 'react';
 import './App.css';
-import Forecaster from './components/Forecaster';
-import MainMapContainer from './components/MainMap';
-import LandingPage from './components/LandingPage';
+import Router from './components/Router';
 
 class App extends Component {
   render() {
   return (
     <div>
-        <LandingPage />
+       
+       <Router />
         
     </div>
   )
