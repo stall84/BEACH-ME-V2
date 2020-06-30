@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { connect } from 'react-redux';
 
 
 class Forecaster extends Component {
@@ -12,9 +13,11 @@ class Forecaster extends Component {
 
         return (
             <div>
-                HI! 
-                <br/>
-                ONE VERY AWESOME BEACH-ME APP OTW
+                
+                <h2>Your Geo-Coords: </h2>
+                    <span>Lat: {this.props.latitude}</span>
+                    <span>Lng: {this.props.longitude}</span>
+                
                 
 
             </div>
@@ -22,4 +25,10 @@ class Forecaster extends Component {
     }
 }
 
-export default Forecaster;
+const mapStateToProps = (state) => {
+    return {
+        ...state
+    }
+}
+
+export default connect(mapStateToProps)(Forecaster);

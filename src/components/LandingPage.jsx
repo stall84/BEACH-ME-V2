@@ -19,7 +19,11 @@ class LandingPage extends Component {
     componentDidMount () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-             console.log(position)
+                this.props.addCoords({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+             console.log(position.coords.latitude)
              // This method of pushing the user's lat/long into state is working during 
              // initial tests. Things I've found online though make me think it's an async call
              // and might need some other proving logic other than the if statement at very beginning 
@@ -60,13 +64,14 @@ class LandingPage extends Component {
 
 // Setting up React-Redux mappings (state/props)
 
-/*
+
+
 const mapDispatchToProps = (dispatch) => {
     return {
-        addCoords: () => {
-            return dispatch({ type: 'ADD_COORDS', payload: {state}})
+        addCoords: (payload) => {
+            return dispatch({ type: 'ADD_COORDS', payload })
         }
     }
 }
-*/
-export default LandingPage;
+
+export default connect(null, mapDispatchToProps) (LandingPage);

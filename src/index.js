@@ -11,14 +11,23 @@ import * as serviceWorker from './serviceWorker';
 // Initial Location of our Redux Store and Initial State
 
 const initialState = {
-  lat: 33.79,
-  lng: -84.35
+  latitude: 'TESTING LAT',
+  longitude: 'Testing Long'
 }
 
 
 const reducer = (state = initialState, action) => {
-  console.log(initialState)
-}
+  if (action.type === 'ADD_COORDS') {
+    return {
+      ...state,
+      latitude: action.payload.latitude,
+      longitude: action.payload.longitude
+    }
+    
+    }
+    return state 
+  }
+
 
 const store = createStore(reducer)
 
