@@ -1,5 +1,7 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import { connect } from 'react-redux';
 import Carousel from './Carousel';
+import Header from './Header';
 import './styles/LandingPage.css';
 
 
@@ -17,7 +19,11 @@ class LandingPage extends Component {
     componentDidMount () {
         if (navigator.geolocation) {
             navigator.geolocation.getCurrentPosition((position) => {
-             console.log(position)
+                this.props.addCoords({
+                    latitude: position.coords.latitude,
+                    longitude: position.coords.longitude
+                })
+             console.log(position.coords.latitude)
              // This method of pushing the user's lat/long into state is working during 
              // initial tests. Things I've found online though make me think it's an async call
              // and might need some other proving logic other than the if statement at very beginning 
@@ -34,16 +40,19 @@ class LandingPage extends Component {
     render() {
         return (
             <div>
-               <Carousel />
-               <div className="zipCodeForm">
-                <form>
-                    <div className="form-row">
-                        <div className="col-12">
-                        <input type="text" className="form-control" placeholder="Enter ZipCode and hit enter - Or simply click buttons for auto-location-finding" />
+                <div className="headerCont">
+                    <Header />
+                </div>
+                <Carousel />
+                <div className="zipCodeForm">
+                    <form>
+                        <div className="form-row">
+                            <div className="col-12">
+                            <input type="text" className="form-control" placeholder="Enter ZipCode and hit enter - Or simply click buttons for auto-location-finding" />
+                            </div>
                         </div>
-                    </div>
-                </form>
-               </div>
+                    </form>
+                </div>
                 <div className="inputButtons">
                     <button type="button" className="btn btn-outline-info btn-lg">Local Weather</button>
                     <button type="button" className="btn btn-outline-warning btn-lg">Plz BEACH ME!</button>
@@ -53,4 +62,16 @@ class LandingPage extends Component {
     }
 }
 
-export default LandingPage;
+// Setting up React-Redux mappings (state/props)
+
+
+
+const mapDispatchToProps = (dispatch) => {
+    return {
+        addCoords: (payload) => {
+            return dispatch({ type: 'ADD_COORDS', payload })
+        }
+    }
+}
+
+export default connect(null, mapDispatchToProps) (LandingPage);
