@@ -12,24 +12,38 @@ import * as serviceWorker from './serviceWorker';
 
 const initialState = {
   latitude: 'TESTING LAT',
-  longitude: 'Testing Long'
+  longitude: 'T3STING LONG'
 }
 
 
 const reducer = (state = initialState, action) => {
-  if (action.type === 'ADD_COORDS') {
-    return {
+
+  switch(action.type) {
+    case 'ADD_COORDS': 
+    return { 
       ...state,
       latitude: action.payload.latitude,
       longitude: action.payload.longitude
     }
-    
-    }
-    return state 
+    default: 
+      return state
   }
+}
+  const store = createStore(reducer)
+   
+  // if (action.type === 'ADD_COORDS') {
+  //   return {
+  //     ...state,
+  //     latitude: action.payload.latitude,
+  //     longitude: action.payload.longitude
+  //   }
+    
+  //   }
+  //   return state 
+  // }
 
 
-const store = createStore(reducer)
+
 
 ReactDOM.render(
 

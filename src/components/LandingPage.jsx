@@ -23,7 +23,7 @@ class LandingPage extends Component {
                     latitude: position.coords.latitude,
                     longitude: position.coords.longitude
                 })
-             console.log(position.coords.latitude)
+             
              // This method of pushing the user's lat/long into state is working during 
              // initial tests. Things I've found online though make me think it's an async call
              // and might need some other proving logic other than the if statement at very beginning 

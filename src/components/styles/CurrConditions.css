@@ -1,0 +1,26 @@
+
+
+img {
+    height: 80px;
+    width: 80px;
+    background-color: rgb(212, 212, 189);
+}
+
+.localConditions {
+    background-color: rgb(137, 199, 201);
+    box-shadow: 2px 2px;
+    border: 2px solid grey;
+}
+
+.conditionsBox {
+    background-color: bisque;
+    border: 2px solid grey;
+    box-shadow: 2px 2px;
+    justify-content: space-around;
+}
+
+.locationDiv {
+    background-color: rgb(238, 149, 194);
+    border: 2px solid grey;
+    box-shadow: 2px 2px;
+}
