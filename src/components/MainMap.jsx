@@ -1,6 +1,8 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { connect } from 'react-redux';
+import { shortestTrips } from '../utilities';
+import { beachList } from '../beaches';
 import BeachFiveForecast from './BeachFiveForecast';
 import './styles/MainMap.css'
 
@@ -40,6 +42,7 @@ class MainMapContainer extends Component {
 
         distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
             if (status === 'OK') {
+                console.log('Respnse: ', res)
                 var dists = res.rows[0].elements
                 var distArr = []
                 for (var i = 0; i < dists.length; i++) {               
@@ -49,7 +52,10 @@ class MainMapContainer extends Component {
             } else {
                 console.log(status)
             }
-            console.log(distArr[1])
+            
+            console.log('Sorted: ', shortestTrips(distArr))
+            console.log('Beach Check: ', beachList[0].name)
+            console.log('Charleston Check: ', beachList[4])
                   
         })
 
