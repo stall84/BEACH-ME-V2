@@ -1,0 +1,27 @@
+
+.containerDiv {
+ 
+    
+    background-image: url(/images/background2.jpg);
+    background-size: auto;
+    text-align: center;
+}
+
+.mainWindow {
+    
+    display: flex;
+    flex-direction: column;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.mainWindow > h1 {
+    background-color: ivory;
+    border: 2px solid grey;
+    box-shadow: 2px 2px;
+    transition: all .5s ease-in-out;
+}
+
+.mainWindow > h1:hover {
+    box-shadow: 6px 6px;
+}

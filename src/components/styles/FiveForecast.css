@@ -1,0 +1,17 @@
+
+
+
+
+.forecastContainer {
+    margin: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.dayBox {
+    opacity: 0.9;
+    border: 1px solid moccasin;
+    height: 15em;
+    width: 15em;
+}

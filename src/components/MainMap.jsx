@@ -1,10 +1,15 @@
 import React, { Component } from 'react';
-import { Map, InfoWindow, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import BeachFiveForecast from './BeachFiveForecast';
+import './styles/MainMap.css'
+
+
+
 
 const mapStyles = {
     marginTop:'2rem',
-    width: '86%',
-    height: '86%'
+    width: '80%',
+    height: '80%'
 }
 
 
@@ -96,6 +101,7 @@ class MainMapContainer extends Component {
 
             
             <React.Fragment>
+        <div className="mainContainer">    
             <div className="mapContainer">
                 <Map 
                     google={this.props.google}
@@ -108,13 +114,13 @@ class MainMapContainer extends Component {
                     <Marker />
 
              
-                </Map>
-            
-                
+                </Map>               
             </div>
-            <div>
-            <button onClick={this.getDistances}>Click For DistanceMatrix</button>
+        </div> 
+            <div className="forecastContainer">
+                <BeachFiveForecast />
             </div>
+         
             </React.Fragment>
         )
     }
