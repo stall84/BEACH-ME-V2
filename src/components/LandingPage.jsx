@@ -58,7 +58,7 @@ class LandingPage extends Component {
                 </div>
                 <div className="inputButtons">
                     <Link to="/forecaster"><button type="button" className="btn btn-outline-info btn-lg">Local Weather</button></Link>
-                    <button type="button" className="btn btn-outline-warning btn-lg">Plz BEACH ME!</button>
+                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">Plz BEACH ME!</button></Link>
                 </div>
             </div>
         )
