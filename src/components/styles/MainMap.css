@@ -1,0 +1,15 @@
+
+
+.mainContainer {
+    margin-top: 3rem;
+    margin-bottom: 3rem;
+}
+
+.mapContainer {
+    margin: 0 auto; 
+    padding: 1em;
+}
+
+.forecastContainer {
+    margin-top: 85vh;
+}

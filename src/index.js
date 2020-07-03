@@ -5,13 +5,14 @@ import App from './App';
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
 
+
 import * as serviceWorker from './serviceWorker';
 
 
 // Initial Location of our Redux Store and Initial State
 
 const initialState = {
-  latitude: 'TESTING LAT',
+  latitude: 'TESTING LATIT',
   longitude: 'T3STING LONG'
 }
 
@@ -29,7 +30,7 @@ const reducer = (state = initialState, action) => {
       return state
   }
 }
-  const store = createStore(reducer)
+  const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
    
   // if (action.type === 'ADD_COORDS') {
   //   return {

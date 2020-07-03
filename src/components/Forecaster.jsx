@@ -14,7 +14,8 @@ class Forecaster extends Component {
         super(props)
 
         this.state = {
-            weather: ''
+            weather: '',
+            forecast: ''
         }
     }
 
@@ -22,16 +23,23 @@ class Forecaster extends Component {
    
     // Create a method to load in the local weather when the component is loaded
     componentDidMount() {
-        const city = 'Destin,FL,USA';
-        const apiKey = process.env.REACT_APP_WX_API_KEY
-        const apiCall = `http://api.openweathermap.org/data/2.5/weather?q=${city}&units=imperial&APPID=${apiKey}`
-        axios.get(apiCall)
+        let apiKey = process.env.REACT_APP_WX_API_KEY
+        let currWxCall = `http://api.openweathermap.org/data/2.5/weather?lat=${this.props.latitude}&lon=${this.props.longitude}&appid=${apiKey}`
+        let forecastCall= `http://api.openweathermap.org/data/2.5/forecast?lat=${this.props.latitude}&lon=${this.props.longitude}&appid=${apiKey}`
+        axios.get(currWxCall)
             .then((response) => {
                 this.setState({
                     weather: response.data
                 })
-                console.log(this.state)
+                console.log(response.data)
             }).catch(err => {console.log(`There was an error: ${err}`)})
+        axios.get(forecastCall) 
+            .then((response) => {
+                this.setState({
+                    forecast: response.data
+                })
+                console.log(response.data)
+            }).catch(err => {console.log(`Error retrieving forecast: ${err}`)})    
         
     }
 
@@ -45,21 +53,26 @@ class Forecaster extends Component {
         })
         */
         return (
+
+        <div className="containerDiv">   
+
             <div className="mainWindow">
 
                 <Link to="/">Go back</Link>
                 <div>
-                    <span>{this.props.latitude}</span>
-                    <span>{this.props.longitude}</span>
+                    <span>Latitude: {this.props.latitude}</span>
+                    <span>Longitude: {this.props.longitude}</span>
                 </div>
                 <div>
                     <CurrConditions {...this.state.weather} />
                 </div>
                 <div>
-                    <FiveForecast />
+                    <FiveForecast {...this.state.forecast} />
                 </div>
 
             </div>
+
+        </div>     
         )
     }
 

@@ -1,13 +1,18 @@
-body {
+
+.containerDiv {
+ 
+    
     background-image: url(/images/background2.jpg);
-    background-size: cover;
+    background-size: auto;
     text-align: center;
 }
 
 .mainWindow {
     
+    display: flex;
+    flex-direction: column;
     margin: 0 auto;
-    width: 80%;
+    width: 100%;
 }
 
 .mainWindow > h1 {

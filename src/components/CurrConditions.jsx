@@ -1,6 +1,6 @@
 import React from 'react';
 import './styles/CurrConditions.css';
-//import { BrowserRouter as Router, Switch, Route, Link } from 'react-router-dom';
+
 
 
 // We've got a simple stateless functional component rendering out the passed-in-thru-props weather conditions

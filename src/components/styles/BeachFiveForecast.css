@@ -1,0 +1,28 @@
+
+.beachForecastContainer {
+    display: flex;
+    flex-direction: column;
+}
+
+.beachForecast {
+    color: orangered;
+    margin: .5rem;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+}
+
+.beachName {
+    padding-top: 1.5rem;
+    opacity: .95;
+    border: 1px solid moccasin;
+    height: 5rem;
+    width: 10rem;
+}
+
+.beachDayBox {
+    opacity: 0.9;
+    border: 1px solid moccasin;
+    height: 5rem;
+    width: 5rem;
+}
