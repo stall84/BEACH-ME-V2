@@ -1,6 +1,8 @@
 
 
 .inputButtons {
+    margin-top: 2em;
+    margin-bottom: 5em;
     display: flex;
     justify-content: space-evenly;
 }

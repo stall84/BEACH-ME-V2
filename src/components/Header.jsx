@@ -17,7 +17,7 @@ class Header extends Component {
                 <div>
                     <nav id="navBar" className="navbar navbar-light">
                        
-                        <img src="/images/Beach-Me-Logo-2.png" width="180" height="60" className="d-inline-block align-top" alt="" />
+                        BEACH-ME
                         
                        
                     </nav>

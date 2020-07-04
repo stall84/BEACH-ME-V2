@@ -59,10 +59,7 @@ class Forecaster extends Component {
             <div className="mainWindow">
 
                 <Link to="/">Go back</Link>
-                <div>
-                    <span>Latitude: {this.props.latitude}</span>
-                    <span>Longitude: {this.props.longitude}</span>
-                </div>
+               
                 <div>
                     <CurrConditions {...this.state.weather} />
                 </div>
