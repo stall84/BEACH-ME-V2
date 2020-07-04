@@ -2,8 +2,10 @@ import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { connect } from 'react-redux';
 import { shortestTrips } from '../utilities';
-import { beachList } from '../beaches';
+import { beachList, nameArray } from '../beaches';
 import BeachFiveForecast from './BeachFiveForecast';
+import BeachTripTimes from './BeachTripTimes';
+import Header from './Header';
 import './styles/MainMap.css'
 
 
@@ -11,8 +13,8 @@ import './styles/MainMap.css'
 
 const mapStyles = {
     marginTop:'2rem',
-    width: '80%',
-    height: '80%'
+    width: '80vw',
+    height: '80vh'
 }
 
 
@@ -22,7 +24,7 @@ class MainMapContainer extends Component {
         super(props) 
 
         this.state = {
-
+            beaches: []
         }
 
     }
@@ -34,7 +36,10 @@ class MainMapContainer extends Component {
         console.log(google)
     
         let origins = [`${this.props.latitude},${this.props.longitude}`]
-        let destinations = ['30.17,-85.80', '32.66,-79.93', '32.17,-80.74', '25.81,-80.13']
+        let destinations = []
+        beachList.forEach(beach => {
+            destinations.push(`${beach.lat},${beach.lng}`)
+        })       
         let travelMode = 'DRIVING'
 
         const distService = new this.props.google.maps.DistanceMatrixService()
@@ -42,8 +47,17 @@ class MainMapContainer extends Component {
 
         distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
             if (status === 'OK') {
+                console.log(destinations)
                 console.log('Respnse: ', res)
+                console.log('Beach Names Arr: ', nameArray)
+                //const resRows = res.rows[0]
+                //console.log('resRows: ', resRows)
+                // var dists2 = [];
+                // res.sort((a,b) => a.rows[0].elements.duration.value - b.rows[0].elements.duration.value)
                 var dists = res.rows[0].elements
+                
+                console.log('Dists: ', dists)
+                // console.log('Dists2: ', dists2)
                 var distArr = []
                 for (var i = 0; i < dists.length; i++) {               
                     distArr.push(dists[i].duration.value)       
@@ -52,10 +66,22 @@ class MainMapContainer extends Component {
             } else {
                 console.log(status)
             }
+                // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
+                // our beachList array we've hardcoded.
+            const mergedArray = nameArray.map((beach, i) => ({[beach]:distArr[i]}))
+            console.log('Merged Array: ', mergedArray)
+            console.log('Sorted Arr: ', mergedArray.sort((a,b) => Object.values(a)[0] - Object.values(b)[0]))
+                // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
+            const sortedArray = mergedArray.sort((a,b) => Object.values(a)[0] - Object.values(b)[0])
+                // Taking the first 5 closest beaches to user
+            const beachDurations = sortedArray.splice(0,5)
+            console.log('Beach Duration array: ', beachDurations)
+                // Setting the 5 closest beaches to user into state 
+            this.setState({
+                beaches: beachDurations
+            })
             
-            console.log('Sorted: ', shortestTrips(distArr))
-            console.log('Beach Check: ', beachList[0].name)
-            console.log('Charleston Check: ', beachList[4])
+   
                   
         })
 
@@ -67,43 +93,15 @@ class MainMapContainer extends Component {
     
     }
 
-//     getPlaces = (mapProps, map) => {
-//         const {google} = this.props
-//         const placeSearch = new google.maps.places.PlacesService(map)
-
-//         let location = {
-//             lat: 33.79,
-//             lng: -84.35
-//         }
-//         let radius = '5000'
-//         let type = ['bowling_alley']
-     
-//         placeSearch.nearbySearch({ location, radius, type }, (res,status) => {
-
-//             if (status === 'OK') {
-//                 for (let i=0; i < res.length; i++) {
-//                 console.log(res[i].name)
-//             }
-//             } else {
-//                 console.log(`Error incurred in place-search: ${status}`)
-//             }
-//         })
-
-// }
-
 
     render() {
-        
-
        
-    
-        
-    
             
         return (
 
             
             <React.Fragment>
+                <Header />
         <div className="mainContainer">    
             <div className="mapContainer">
                 <Map 
@@ -120,9 +118,13 @@ class MainMapContainer extends Component {
                 </Map>               
             </div>
         </div> 
+
+            <div className="beachDurations">
+                <BeachTripTimes beach={this.state.beaches[0]} />
+                <BeachTripTimes beach={this.state.beaches[1]} />
+            </div>
             <div className="forecastContainer">
-        <span>Users Lat: {this.props.latitude}</span>
-        <span>Users Long: {this.props.longitude}</span>
+        
                 <BeachFiveForecast />
             </div>
          
