@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
 import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
 import { connect } from 'react-redux';
-import { shortestTrips } from '../utilities';
+import { shortestTrips, timeConverter } from '../utilities';
 import { beachList, nameArray } from '../beaches';
 import BeachFiveForecast from './BeachFiveForecast';
 import BeachTripTimes from './BeachTripTimes';
@@ -50,10 +50,7 @@ class MainMapContainer extends Component {
                 console.log(destinations)
                 console.log('Respnse: ', res)
                 console.log('Beach Names Arr: ', nameArray)
-                //const resRows = res.rows[0]
-                //console.log('resRows: ', resRows)
-                // var dists2 = [];
-                // res.sort((a,b) => a.rows[0].elements.duration.value - b.rows[0].elements.duration.value)
+                
                 var dists = res.rows[0].elements
                 
                 console.log('Dists: ', dists)
@@ -68,11 +65,12 @@ class MainMapContainer extends Component {
             }
                 // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
                 // our beachList array we've hardcoded.
-            const mergedArray = nameArray.map((beach, i) => ({[beach]:distArr[i]}))
+            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))
             console.log('Merged Array: ', mergedArray)
             console.log('Sorted Arr: ', mergedArray.sort((a,b) => Object.values(a)[0] - Object.values(b)[0]))
                 // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
-            const sortedArray = mergedArray.sort((a,b) => Object.values(a)[0] - Object.values(b)[0])
+            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )
+            console.log('New Sorted Arr: ', sortedArray)
                 // Taking the first 5 closest beaches to user
             const beachDurations = sortedArray.splice(0,5)
             console.log('Beach Duration array: ', beachDurations)
@@ -120,11 +118,11 @@ class MainMapContainer extends Component {
         </div> 
 
             <div className="beachDurations">
-                <BeachTripTimes beach={this.state.beaches[0]} />
-                <BeachTripTimes beach={this.state.beaches[1]} />
+        <h2><span>Nearest Beaches: {this.state.beaches.map((beach) => <div>{beach.name} - {timeConverter(beach.dur)}</div>)} </span></h2>
+                
             </div>
             <div className="forecastContainer">
-        
+
                 <BeachFiveForecast />
             </div>
          
