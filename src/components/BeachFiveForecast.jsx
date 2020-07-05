@@ -1,7 +1,24 @@
 import React, { Component } from 'react';
+import axios from 'axios';
+
 import './styles/BeachFiveForecast.css';
 
 class BeachFiveForecast extends Component {
+
+    constructor(props) {
+        super(props) 
+
+        this.state = {
+            forecast: ''
+        }
+    }
+
+    componentDidMount() {
+        let apiKey = process.env.REACT_APP_WX_API_KEY
+        //let forecastCall = `http://api.openweathermap.org/data/2.5/forecast?lat=${}&lon=${}&appid=${apiKey}`
+    }
+
+
     render() {
         return (
             
