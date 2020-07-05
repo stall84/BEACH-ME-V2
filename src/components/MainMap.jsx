@@ -1,21 +1,14 @@
 import React, { Component } from 'react';
-import { Map, GoogleApiWrapper, Marker } from 'google-maps-react';
+import { GoogleApiWrapper } from 'google-maps-react';
 import { connect } from 'react-redux';
-import { shortestTrips, timeConverter } from '../utilities';
+import { timeConverter } from '../utilities';
 import { beachList, nameArray } from '../beaches';
 import BeachFiveForecast from './BeachFiveForecast';
-import BeachTripTimes from './BeachTripTimes';
 import Header from './Header';
 import './styles/MainMap.css'
 
 
 
-
-const mapStyles = {
-    marginTop:'2rem',
-    width: '80vw',
-    height: '80vh'
-}
 
 
 class MainMapContainer extends Component {
@@ -34,7 +27,8 @@ class MainMapContainer extends Component {
 
         const { google } = this.props
         console.log(google)
-    
+        const { latitude, longitude } = this.props
+        console.log('Logging Lat/Lng from Redux: ', latitude, longitude)
         let origins = [`${this.props.latitude},${this.props.longitude}`]
         let destinations = []
         beachList.forEach(beach => {
@@ -78,16 +72,8 @@ class MainMapContainer extends Component {
             this.setState({
                 beaches: beachDurations
             })
-            
-   
-                  
+                           
         })
-
-        
-
-       
-    
-    
     
     }
 
@@ -100,25 +86,10 @@ class MainMapContainer extends Component {
             
             <React.Fragment>
                 <Header />
-        <div className="mainContainer">    
-            <div className="mapContainer">
-                <Map 
-                    google={this.props.google}
-                    zoom={9}
-                    onReady={this.getPlaces}
-                    style={mapStyles}
-                    initialCenter={{ lat:33.79, lng: -84.35 }}
-                    
-                >
-                    <Marker />
-
-             
-                </Map>               
-            </div>
-        </div> 
-
+                
+            {/* Added a GoogleMaps API desitnation search API call to our mapping of beaches in state below. When I can get my data structured better, I can template in the lat/long instead of just the beach/city name, as this will likely bug-out on occasion */}
             <div className="beachDurations">
-        <h2><span>Nearest Beaches: {this.state.beaches.map((beach) => <div>{beach.name} - {timeConverter(beach.dur)}</div>)} </span></h2>
+                <h2><span>Nearest Beaches: {this.state.beaches.map((beach) => <div><a href={`https://www.google.com/maps/dir/?api=1&destination=${beach.name}&travelmode=driving`}>{beach.name}</a> - {timeConverter(beach.dur)}</div>)} </span></h2>
                 
             </div>
             <div className="forecastContainer">
