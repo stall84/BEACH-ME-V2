@@ -2,13 +2,25 @@ body {
     letter-spacing: 2px;
 }
 
+
 .beachForecastContainer {
     text-align: center;
     background-color: rgb(135, 217, 231);
     font-family: monospace;
-    font-size: 12px;
+    font-size: 14px;
     display: flex;
     flex-direction: column;
+}
+
+img {
+    height: 65px;
+    width: 65px;
+}
+
+@media screen and (max-width: 750px) {
+    .beachForecastContainer {
+        font-size: 10px;
+    }
 }
 
 .beachForecast {
@@ -20,13 +32,26 @@ body {
     justify-content: space-evenly;
 }
 
+@media screen and (max-width: 750px) {
+    img {
+        height: 40px;
+        width: 40px;
+    }
+}
+
 .beachName {
-    font-size: 18px;
+    font-size: 14px;
     padding-top: 1.5rem;
     opacity: .95;
     border: 1px solid rgb(212, 162, 76);
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    width: 8rem;
+}
+
+@media screen and (max-width: 750px) {
+    .beachName {
+        font-size: 10px;
+    }
 }
 
 .beachDayBox {
@@ -34,6 +59,7 @@ body {
     opacity: 0.9;
     margin: .2em;
     border: 1px solid rgb(212, 162, 76);
-    height: 10rem;
-    width: 10rem;
+    height: 8rem;
+    width: 8rem;
 }
+

@@ -17,9 +17,11 @@ class Header extends Component {
             <Link to="/" style={{textDecoration:'none', color:'black'}}>
             <header className="container-fluid">
                 <div>
-                    <nav id="navBar" className="navbar navbar-light">
+                    <nav id="navBar" className="navbar navbar-light text-center">
                        
-                        BEACH-ME
+                        BEACH
+                        <br/>
+                        ME
                         
                        
                     </nav>
