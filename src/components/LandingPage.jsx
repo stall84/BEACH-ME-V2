@@ -2,6 +2,7 @@ import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import { Link } from 'react-router-dom';
 import Carousel from './Carousel';
+import Footer from './Footer';
 import Header from './Header';
 import './styles/LandingPage.css';
 
@@ -49,9 +50,9 @@ class LandingPage extends Component {
                 <Carousel />
                 
                 <div className="inputButtons">
-                    <Link to="/forecaster"><button type="button" className="btn btn-outline-info btn-lg">Local Weather</button></Link>
-                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">Plz BEACH ME!</button></Link>
+                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning" style={{fontSize: '5rem'}}>PLZ BEACH ME!</button></Link>
                 </div>
+                <Footer style={{fontSize: '12px;'}} />
             </div>
         )
     }

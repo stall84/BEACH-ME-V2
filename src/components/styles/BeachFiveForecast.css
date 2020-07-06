@@ -1,14 +1,19 @@
+body {
+    letter-spacing: 2px;
+}
 
 .beachForecastContainer {
+    text-align: center;
+    background-color: rgb(135, 217, 231);
     font-family: monospace;
     font-size: 12px;
-    
     display: flex;
     flex-direction: column;
 }
 
 .beachForecast {
-    color: orangered;
+    color: black;
+    text-shadow:rgb(230, 248, 128) .5px .5px;
     margin: .5rem;
     display: flex;
     flex-direction: row;
@@ -16,16 +21,19 @@
 }
 
 .beachName {
+    font-size: 18px;
     padding-top: 1.5rem;
     opacity: .95;
-    border: 1px solid moccasin;
-    height: 5rem;
+    border: 1px solid rgb(212, 162, 76);
+    height: 10rem;
     width: 10rem;
 }
 
 .beachDayBox {
+    
     opacity: 0.9;
-    border: 1px solid moccasin;
-    height: 5rem;
-    width: 5rem;
+    margin: .2em;
+    border: 1px solid rgb(212, 162, 76);
+    height: 10rem;
+    width: 10rem;
 }

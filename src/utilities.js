@@ -21,3 +21,7 @@ export const timeConverter = (n) => {
     var rMinutes = Math.round(minutes);
     return `${rHours}Hours and ${rMinutes}Minutes`
 }
+
+export const kelvinConverter = (T) => {
+    return ((T * (9/5)) - 459.67).toFixed()
+}
