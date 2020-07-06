@@ -41,11 +41,8 @@ class MainMapContainer extends Component {
         distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
             if (status === 'OK') {
                 
-                
+                // Create dists and distArr arrays to pick out numeric values from google's response
                 var dists = res.rows[0].elements
-                
-                
-                // console.log('Dists2: ', dists2)
                 var distArr = []
                 for (var i = 0; i < dists.length; i++) {               
                     distArr.push(dists[i].duration.value)       
@@ -56,25 +53,20 @@ class MainMapContainer extends Component {
             }
                 // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
                 // our beachList array we've hardcoded.
-            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))
-            
+            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))           
                 // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
-            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )
-            
+            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )        
                 // Taking the first 5 closest beaches to user
-            const beachDurations = sortedArray.splice(0,5)
-            
+            const beachDurations = sortedArray.splice(0,5)           
                 // Setting the 5 closest beaches to user into state 
             this.setState({
-                beaches: beachDurations,
-                
+                beaches: beachDurations,               
             })
+            // this is a placeholder for future Redux-store functionality 
             this.props.addBeaches({
                 beaches: beachDurations             
-            })
-                           
-        })
-    
+            })                          
+        }) 
     }
 
     componentDidUpdate(prevProps, prevState, snapShot) {
@@ -95,7 +87,7 @@ class MainMapContainer extends Component {
             <React.Fragment>
                 <Header />
                 
-            {/* Added a GoogleMaps API desitnation search API call to our mapping of beaches in state below. When I can get my data structured better, I can template in the lat/long instead of just the beach/city name, as this will likely bug-out on occasion */}
+            {/* Added a GoogleMaps API driving-directions/desitnation search API call to our mapping of beaches in state below. When I can get my data structured better, I can template in the lat/long instead of just the beach/city name, as this will likely bug-out on occasion */}
             <div className="beachDurations">
                 <h2><span>Click for directions to - <br/>Your Nearest Beaches: {this.state.beaches.map((beach, i) => <div key={i}><a target='_blank' rel='noopener noreferrer' href={`https://www.google.com/maps/dir/?api=1&destination=${beach.name}&travelmode=driving`}>{beach.name}</a> - {timeConverter(beach.dur)}</div>)} </span></h2>
                 
