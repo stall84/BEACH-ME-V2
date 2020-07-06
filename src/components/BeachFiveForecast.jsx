@@ -19,23 +19,21 @@ class BeachFiveForecast extends Component {
         }
     }
 
-    
-
     componentDidMount() {
      
         var beachWxArr = []
         this.props.fiveBeaches.map(beach => beachWxArr.push(beach.name)) 
-        
-        
         const apiKey = process.env.REACT_APP_WX_API_KEY
         
+        // Setting all 5 weather api calls to constants. Attempting to change to https call for security 
 
-        const beach1forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[0]}&appid=${apiKey}`
-        const beach2forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[1]}&appid=${apiKey}`
-        const beach3forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[2]}&appid=${apiKey}`
-        const beach4forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[3]}&appid=${apiKey}`
-        const beach5forecast = `http://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[4]}&appid=${apiKey}`
+        const beach1forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[0]}&appid=${apiKey}`
+        const beach2forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[1]}&appid=${apiKey}`
+        const beach3forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[2]}&appid=${apiKey}`
+        const beach4forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[3]}&appid=${apiKey}`
+        const beach5forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[4]}&appid=${apiKey}`
         
+        // Using await promise.all was not working during first build so stringing along promises for the axios calls
       
         axios.get(beach1forecast) 
             .then((response) => {
@@ -69,30 +67,8 @@ class BeachFiveForecast extends Component {
                 
             }).catch(err => {console.log(`Error retrieving forecast: ${err}`)})    
      
-
-
-
-            
-
-
     }
         
-        
-    //     var wxBeachArr = []
-    //     setTimeout(() => {this.props.fiveBeaches.map(beachName => wxBeachArr.push(beachName.name))}, 2000)
-         
-       
-    //     //let forecastCall = `http://api.openweathermap.org/data/2.5/forecast?lat=${}&lon=${}&appid=${apiKey}`
-    //     setTimeout(() => {console.log('Checking wxBeachArr: ', wxBeachArr)}, 3000)
-    // }
-
-    
-
-    // componentDidUpdate(prevProps) {
-    //     if (this.props.beaches !== prevProps.beaches) {
-    //         this.fetchData(this.props.beaches)
-    //     }
-    // }
 
     render() {
 
@@ -118,115 +94,115 @@ class BeachFiveForecast extends Component {
 
                 <div className="beachForecast">
                     <div className="beachName">{this.state.forecast1.city.name}</div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast1.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast1.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>
                     <h6>{this.state.forecast1.list[0].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast1.list[0].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast1.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast1.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>
                     <h6>{this.state.forecast1.list[8].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast1.list[8].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast1.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast1.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>
                     <h6>{this.state.forecast1.list[16].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast1.list[16].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast1.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast1.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>
                     <h6>{this.state.forecast1.list[24].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast1.list[24].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast1.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast1.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>
                     <h6>{this.state.forecast1.list[32].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast1.list[32].main.temp)}F</h6>
                     </div>
                 </div> 
                 <div className="beachForecast">
                     <div className="beachName">{this.state.forecast2.city.name}</div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast2.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast2.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
                     <h6>{this.state.forecast2.list[0].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast2.list[0].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast2.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast2.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
                     <h6>{this.state.forecast2.list[8].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast2.list[8].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast2.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast2.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
                     <h6>{this.state.forecast2.list[16].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast2.list[16].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast2.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast2.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
                     <h6>{this.state.forecast2.list[24].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast2.list[24].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast2.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast2.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
                     <h6>{this.state.forecast2.list[32].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast2.list[32].main.temp)}F</h6>
                     </div>
                 </div>
                 <div className="beachForecast">
                     <div className="beachName">{this.state.forecast3.city.name}</div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast3.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast3.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
                     <h6>{this.state.forecast3.list[0].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast3.list[0].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast3.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast3.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
                     <h6>{this.state.forecast3.list[8].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast3.list[8].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast3.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast3.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
                     <h6>{this.state.forecast3.list[16].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast3.list[16].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast3.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast3.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
                     <h6>{this.state.forecast3.list[24].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast3.list[24].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast3.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast3.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
                     <h6>{this.state.forecast3.list[32].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast3.list[32].main.temp)}F</h6>
                     </div>
                 </div>
                 <div className="beachForecast">
                     <div className="beachName">{this.state.forecast4.city.name}</div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast4.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast4.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
                     <h6>{this.state.forecast4.list[0].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast4.list[0].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast4.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast4.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
                     <h6>{this.state.forecast4.list[8].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast4.list[8].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast4.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast4.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
                     <h6>{this.state.forecast4.list[16].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast4.list[16].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast4.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast4.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
                     <h6>{this.state.forecast4.list[24].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast4.list[24].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast4.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast4.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
                     <h6>{this.state.forecast4.list[32].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast4.list[32].main.temp)}F</h6>
                     </div>
                 </div>
                 <div className="beachForecast">
                     <div className="beachName">{this.state.forecast5.city.name}</div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast5.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast5.list[0].weather[0].icon}.png`} alt="Wx Icon"></img>Day 1
                     <h6>{this.state.forecast5.list[0].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast5.list[0].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast5.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast5.list[8].weather[0].icon}.png`} alt="Wx Icon"></img>Day 2
                     <h6>{this.state.forecast5.list[8].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast5.list[8].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast5.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast5.list[16].weather[0].icon}.png`} alt="Wx Icon"></img>Day 3
                     <h6>{this.state.forecast5.list[16].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast5.list[16].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast5.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast5.list[24].weather[0].icon}.png`} alt="Wx Icon"></img>Day 4
                     <h6>{this.state.forecast5.list[24].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast5.list[24].main.temp)}F</h6>
                     </div>
-                    <div className="beachDayBox"><img src={`http://openweathermap.org/img/wn/${this.state.forecast5.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
+                    <div className="beachDayBox"><img src={`https://openweathermap.org/img/wn/${this.state.forecast5.list[32].weather[0].icon}.png`} alt="Wx Icon"></img>Day 5
                     <h6>{this.state.forecast5.list[32].weather[0].description.toUpperCase()}</h6>
                     <h6>Temp: {kelvinConverter(this.state.forecast5.list[32].main.temp)}F</h6>
                     </div>
