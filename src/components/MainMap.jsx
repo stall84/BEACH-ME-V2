@@ -26,7 +26,9 @@ class MainMapContainer extends Component {
 
     componentDidMount() {
 
-        const { google } = this.props
+        // This method section initially contained all of the code for rendering an actual Google Map. For initial version it was decided to remove the map and 
+        // proceed with only distance matrix information, and hyperlinks through to Google-Maps where driving directions are displayed.
+    
         const { latitude, longitude } = this.props
         console.log('Logging Lat/Lng from Redux: ', latitude, longitude)
         let origins = [`${this.props.latitude},${this.props.longitude}`]
@@ -36,11 +38,12 @@ class MainMapContainer extends Component {
         })       
         let travelMode = 'DRIVING'
 
+        // Instantiating Google's distance matrix service method which is made available on/by the GoogleAPIWrapper HOF 
         const distService = new this.props.google.maps.DistanceMatrixService()
         
         distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
             if (status === 'OK') {
-                
+        
                 // Create dists and distArr arrays to pick out numeric values from google's response
                 var dists = res.rows[0].elements
                 var distArr = []
@@ -51,11 +54,14 @@ class MainMapContainer extends Component {
             } else {
                 console.log(status)
             }
+        
                 // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
                 // our beachList array we've hardcoded.
-            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))           
+            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))     
+               
                 // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
-            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )        
+            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )  
+                 
                 // Taking the first 5 closest beaches to user
             const beachDurations = sortedArray.splice(0,5)           
                 // Setting the 5 closest beaches to user into state 
@@ -69,6 +75,7 @@ class MainMapContainer extends Component {
         }) 
     }
 
+    // Checking if the state has updated & resetting isLoading value   
     componentDidUpdate(prevProps, prevState, snapShot) {
         if (this.state.beaches !== prevState.beaches) {
             this.setState({
@@ -94,7 +101,7 @@ class MainMapContainer extends Component {
             </div>
             <div className="forecastContainer container-fluid">
                
-
+                {/* Wrapping the rendering of our Forecast component in conditional to check the isLoading proer*/}
               { !this.state.isLoading && (<BeachFiveForecast fiveBeaches={this.state.beaches} />) }
 
             </div>
