@@ -13,7 +13,8 @@ import * as serviceWorker from './serviceWorker';
 
 const initialState = {
   latitude: 'TESTING LATIT',
-  longitude: 'T3STING LONG'
+  longitude: 'T3STING LONG',
+  beaches: null
 }
 
 
@@ -21,28 +22,22 @@ const reducer = (state = initialState, action) => {
 
   switch(action.type) {
     case 'ADD_COORDS': 
-    return { 
-      ...state,
-      latitude: action.payload.latitude,
-      longitude: action.payload.longitude
-    }
+      return { 
+        ...state,
+        latitude: action.payload.latitude,
+        longitude: action.payload.longitude
+      }
+    case 'ADD_BEACHES':
+      return {
+        ...state,
+        beaches: action.payload.beaches
+      }
     default: 
       return state
-  }
+      }
 }
   const store = createStore(reducer, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())
    
-  // if (action.type === 'ADD_COORDS') {
-  //   return {
-  //     ...state,
-  //     latitude: action.payload.latitude,
-  //     longitude: action.payload.longitude
-  //   }
-    
-  //   }
-  //   return state 
-  // }
-
 
 
 

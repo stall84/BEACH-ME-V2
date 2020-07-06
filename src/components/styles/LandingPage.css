@@ -7,6 +7,7 @@
     justify-content: space-evenly;
 }
 
-.zipCodeForm {
-    margin: 1rem auto;
+.footerMain {
+    text-align: center;
+    font-size: 12px;
 }

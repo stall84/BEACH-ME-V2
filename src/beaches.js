@@ -3,7 +3,7 @@ export const beachList = [
 
     {
         id: 1,
-        name: 'Kill Devil Hills Beach',
+        name: 'Kill Devil Hills',
         state: 'NC',
         lat: 36.034500,
         lng: -75.668680
@@ -17,7 +17,7 @@ export const beachList = [
     },
     {
         id: 3,
-        name: 'Oak Island Beach',
+        name: 'Oak Island',
         state: 'NC',
         lat: 33.908880,
         lng: -78.109920
@@ -31,28 +31,28 @@ export const beachList = [
     },
     {
         id: 5,
-        name: 'Isle Of Palms Beach',
+        name: 'Isle Of Palms',
         state: 'SC',
         lat: 32.832070,
         lng: -79.727760
     },
     {
         id: 6,
-        name: 'Hilton Head Island Beach',
+        name: 'Hilton Head Island',
         state: 'SC',
         lat: 32.142891,
         lng: -80.751512
     },
     {
         id: 7,
-        name: 'Tybee Island Beach',
+        name: 'Tybee Island',
         state: 'GA',
         lat: 32.007976,
         lng: -80.842534
     },
     {
         id: 8,
-        name: 'Saint Simons Island Beach',
+        name: 'Saint Simons',
         state: 'GA',
         lat: 31.146156,
         lng: -81.373035
@@ -73,7 +73,7 @@ export const beachList = [
     },
     {
         id: 11,
-        name: 'Saint Augustine Beach',
+        name: 'Saint Augustine',
         state: 'FL',
         lat: 29.844762,
         lng: -81.265818
@@ -87,7 +87,7 @@ export const beachList = [
     },
     {
         id: 13,
-        name: 'Cape Canaveral Beach',
+        name: 'Cape Canaveral',
         state: 'FL',
         lat: 28.391568,
         lng: -80.597803
@@ -101,7 +101,7 @@ export const beachList = [
     },
     {
         id: 15,
-        name: 'Fort Lauderdale Beach',
+        name: 'Fort Lauderdale',
         state: 'FL',
         lat: 26.120185,
         lng: -80.104638
@@ -115,21 +115,21 @@ export const beachList = [
     },
     {
         id: 17,
-        name: 'Naples Beach',
+        name: 'Naples',
         state: 'FL',
         lat: 26.253537,
         lng: -81.822968
     },
     {
         id: 18,
-        name: 'Clearwater Beach',
+        name: 'Clearwater',
         state: 'FL',
         lat: 27.979209,
         lng: -82.825703
     },
     {
         id: 19,
-        name: 'Alligator Point Beach',
+        name: 'Alligator Point',
         state: 'FL',
         lat: 29.894932,
         lng: -84.381752
@@ -143,35 +143,35 @@ export const beachList = [
     },
     {
         id: 21,
-        name: 'Pensacola Beach',
+        name: 'Pensacola',
         state: 'FL',
         lat: 30.336056,
         lng: -87.144083
     },
     {
         id: 22,
-        name: 'Gulf Shores Beach',
+        name: 'Gulf Shores',
         state: 'AL',
         lat: 30.248322,
         lng: -87.687664
     },
     {
         id: 23,
-        name: 'Dauphin Island Beach',
+        name: 'Dauphin Island',
         state: 'AL',
         lat: 30.249981,
         lng: -88.127438
     },
     {
         id: 24,
-        name: 'Biloxi Beach',
+        name: 'Biloxi',
         state: 'MS',
         lat: 30.391545,
         lng: -88.967007
     },
     {
         id: 25,
-        name: 'Bay Saint Louis Beach',
+        name: 'Bay Saint Louis',
         state: 'MS',
         lat: 30.299605,
         lng: -89.336567

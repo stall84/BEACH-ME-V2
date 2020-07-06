@@ -1,22 +1,11 @@
 
 
-
-.mainContainer {
-    margin-top: 1.5rem;
-    margin-bottom: 2rem;
-}
-
-.mapContainer {
-    margin: 0 auto; 
-    padding: 1em;
-}
-
 .beachDurations {
     text-align: center;
-    margin-top: 80vh;
+    margin-top: 20vh;
 }
 
 .forecastContainer {
-    margin-top: 85vh;
+    margin-top: 30vh;
 }
 
