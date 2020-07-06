@@ -88,7 +88,7 @@ class BeachFiveForecast extends Component {
         return (
             
                 
-            <div className="beachForecastContainer"> 
+            <div className="beachForecastContainer container-fluid"> 
 
                 <h1>5-Day Forecasts:</h1>
 

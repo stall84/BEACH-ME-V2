@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import { Link } from 'react-router-dom';
 import './styles/Header.css'
 
 class Header extends Component {
@@ -13,7 +14,8 @@ class Header extends Component {
 
     render() {
         return (
-            <header>
+            <Link to="/" style={{textDecoration:'none', color:'black'}}>
+            <header className="container-fluid">
                 <div>
                     <nav id="navBar" className="navbar navbar-light">
                        
@@ -23,6 +25,7 @@ class Header extends Component {
                     </nav>
                 </div>
             </header>
+            </Link>
         )
     }
 
