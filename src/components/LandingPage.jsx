@@ -43,16 +43,18 @@ class LandingPage extends Component {
 
     render() {
         return (
-            <div>
+            <div className="container-fluid">
                 <div className="headerCont">
                     <Header />
                 </div>
+
                 <Carousel />
-                
+
+                <h2>Click below to get BEACHED!</h2>
                 <div className="inputButtons">
-                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning" style={{fontSize: '5rem'}}>PLZ BEACH ME!</button></Link>
+                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
                 </div>
-                <Footer style={{fontSize: '12px;'}} />
+                <Footer />
             </div>
         )
     }

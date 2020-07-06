@@ -7,9 +7,6 @@ export const shortestTrips = (timesArr) => {
 
 }
 
-// Sorter function for combined array in Distance Matrix
-
-
 
 // Convert seconds to hours/mins
 
