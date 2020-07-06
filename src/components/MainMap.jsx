@@ -89,7 +89,7 @@ class MainMapContainer extends Component {
                 
             {/* Added a GoogleMaps API driving-directions/desitnation search API call to our mapping of beaches in state below. When I can get my data structured better, I can template in the lat/long instead of just the beach/city name, as this will likely bug-out on occasion */}
             <div className="beachDurations container-fluid">
-                <h2><span>Click for directions to - <br/>Your Nearest Beaches: {this.state.beaches.map((beach, i) => <div key={i}><a target='_blank' rel='noopener noreferrer' href={`https://www.google.com/maps/dir/?api=1&destination=${beach.name}&travelmode=driving`}>{beach.name}</a> - {timeConverter(beach.dur)}</div>)} </span></h2>
+                <h2><span>Click for directions to - <br/>Your Nearest Beaches: {this.state.beaches.map((beach, i) => <div key={i}><a style={{color:'red'}} target='_blank' rel='noopener noreferrer' href={`https://www.google.com/maps/dir/?api=1&destination=${beach.name}&travelmode=driving`}>{beach.name}</a> - {timeConverter(beach.dur)}</div>)} </span></h2>
                 
             </div>
             <div className="forecastContainer container-fluid">
