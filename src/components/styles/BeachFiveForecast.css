@@ -1,4 +1,6 @@
 body {
+    background-image: url(/public/images/pngwing.com.png);
+    background-size: cover;
     letter-spacing: 2px;
 }
 
