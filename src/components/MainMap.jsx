@@ -7,6 +7,7 @@ import BeachFiveForecast from './BeachFiveForecast';
 import Footer from './Footer';
 import Header from './Header';
 import './styles/MainMap.css'
+import axios from 'axios';
 
 
 
@@ -26,8 +27,13 @@ class MainMapContainer extends Component {
 
     componentDidMount() {
 
-        // This method section initially contained all of the code for rendering an actual Google Map. For initial version it was decided to remove the map and 
-        // proceed with only distance matrix information, and hyperlinks through to Google-Maps where driving directions are displayed.
+        axios.post('/api/v1/get-trips', {
+            reduxLat: this.props.latitude,
+            reduxLng: this.props.longitude
+        })
+            .then(response => {
+                console.log('Post request Made')
+            })
     
         const { latitude, longitude } = this.props
         console.log('Logging Lat/Lng from Redux: ', latitude, longitude)
