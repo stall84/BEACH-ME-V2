@@ -71,12 +71,7 @@ class LandingPage extends Component {
     //     }
     //   }
 
-      checkAPI = () => {
-        axios.get('/api/v1/beaches')
-            .then(response => {
-                console.log(response)
-            })
-    }
+ 
 
     render() {
         return (
@@ -89,8 +84,8 @@ class LandingPage extends Component {
 
                 <h2>Click below to get BEACHED!</h2>
                 <div className="inputButtons">
-                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
-                    <button type="button" onClick={this.checkAPI}>CHECK API</button>
+                    <Link to="/main-map" testProps={true}><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
+                    
                 </div>
                 <Footer />
             </div>

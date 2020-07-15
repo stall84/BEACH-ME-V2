@@ -12,8 +12,9 @@ import * as serviceWorker from './serviceWorker';
 // Initial Location of our Redux Store and Initial State
 
 const initialState = {
-  latitude: 'TESTING LATIT',
-  longitude: 'T3STING LONG',
+  latitude: 33.748995,
+  longitude: -84.387982,
+  searchBeaches: null,
   beaches: null
 }
 
