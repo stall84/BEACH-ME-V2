@@ -35,8 +35,7 @@ class MainMapContainer extends Component {
                 console.log('Post request Made')
             })
     
-        const { latitude, longitude } = this.props
-        console.log('Logging Lat/Lng from Redux: ', latitude, longitude)
+        
         let origins = [`${this.props.latitude},${this.props.longitude}`]
         let destinations = []
         beachList.forEach(beach => {

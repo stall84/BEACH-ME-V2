@@ -37,6 +37,9 @@ class LandingPage extends Component {
                 })
                     .then((response) => {
                     console.log('Response from POST call to backend: ', response)
+                    this.props.addSearchBeaches({
+                        searchBeaches: response.data.data
+                    })
                 })
                     .catch(error => {
                         console.log('Error posting coords: ', error)
@@ -84,7 +87,7 @@ class LandingPage extends Component {
 
                 <h2>Click below to get BEACHED!</h2>
                 <div className="inputButtons">
-                    <Link to="/main-map" testProps={true}><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
+                    <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
                     
                 </div>
                 <Footer />
@@ -101,6 +104,9 @@ class LandingPage extends Component {
     return {
         addCoords: (payload) => {
             return dispatch({ type: 'ADD_COORDS', payload })
+        },
+        addSearchBeaches: (payload) => {
+            return dispatch({ type: 'ADD_SEARCH_BEACHES', payload })
         }
     }
 }
