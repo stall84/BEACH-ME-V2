@@ -29,7 +29,8 @@ class MainMapContainer extends Component {
 
         axios.post('/api/v1/get-trips', {
             reduxLat: this.props.latitude,
-            reduxLng: this.props.longitude
+            reduxLng: this.props.longitude,
+            searchBeaches: this.props.searchBeaches
         })
             .then(response => {
                 console.log('Post request Made')
