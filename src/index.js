@@ -10,7 +10,7 @@ import * as serviceWorker from './serviceWorker';
 
 
 // Initial Location of our Redux Store and Initial State
-
+// Hard-coded in coordinates for Little Five Points ATL until updated by compDidMount
 const initialState = {
   latitude: 33.748995,
   longitude: -84.387982,
@@ -18,9 +18,10 @@ const initialState = {
   beaches: null
 }
 
-
+// Our main/only reducer function for Redux 
 const reducer = (state = initialState, action) => {
 
+  // First action receives the user's lat/long from landing page
   switch(action.type) {
     case 'ADD_COORDS': 
       return { 
@@ -28,6 +29,14 @@ const reducer = (state = initialState, action) => {
         latitude: action.payload.latitude,
         longitude: action.payload.longitude
       }
+   // Add Search Beaches also updates on landing page component mounting after query made to our server/db
+   // This adds into redux state our list of nearest beaches to the user from which to query google DM later   
+    case 'ADD_SEARCH_BEACHES':
+      return {
+        ...state,
+        searchBeaches: action.payload.searchBeaches
+      }  
+   // Add_Beaches updates recdux state once MainMap is loaded/rendered and Google's Distance Matrix has been queried   
     case 'ADD_BEACHES':
       return {
         ...state,
