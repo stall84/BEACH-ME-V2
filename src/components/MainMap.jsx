@@ -33,7 +33,7 @@ class MainMapContainer extends Component {
             searchBeaches: this.props.searchBeaches
         })
             .then(response => {
-                console.log('Post request Made')
+                console.log(response)
             })
     
         
