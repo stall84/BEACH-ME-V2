@@ -27,11 +27,11 @@ class BeachFiveForecast extends Component {
         
         // Setting all 5 weather api calls to constants. Attempting to change to https call for security 
 
-        const beach1forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[0]}&appid=${apiKey}`
-        const beach2forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[1]}&appid=${apiKey}`
-        const beach3forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[2]}&appid=${apiKey}`
-        const beach4forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[3]}&appid=${apiKey}`
-        const beach5forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[4]}&appid=${apiKey}`
+        const beach1forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[0]},&appid=${apiKey}`
+        const beach2forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[1]},&appid=${apiKey}`
+        const beach3forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[2]},&appid=${apiKey}`
+        const beach4forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[3]},&appid=${apiKey}`
+        const beach5forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[4]},&appid=${apiKey}`
         
         // Using await promise.all was not working during first build so stringing along promises for the axios calls
       
