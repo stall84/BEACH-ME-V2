@@ -1,14 +1,11 @@
 
 .containerDiv {
- 
-    
     background-image: url(/images/background2.jpg);
     background-size: auto;
     text-align: center;
 }
 
-.mainWindow {
-    
+.mainWindow {  
     display: flex;
     flex-direction: column;
     margin: 0 auto;
