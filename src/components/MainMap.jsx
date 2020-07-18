@@ -2,7 +2,6 @@ import React, { Component } from 'react';
 import { GoogleApiWrapper } from 'google-maps-react';
 import { connect } from 'react-redux';
 import { timeConverter } from '../utilities';
-import { beachList, nameArray } from '../beaches';
 import BeachFiveForecast from './BeachFiveForecast';
 import Footer from './Footer';
 import Header from './Header';
@@ -34,51 +33,57 @@ class MainMapContainer extends Component {
         })
             .then(response => {
                 console.log(response)
+                this.setState({
+                    beaches: response.data.data
+                })
+                this.props.addBeaches({
+                    beaches: response.data.data
+                })
             })
     
         
-        let origins = [`${this.props.latitude},${this.props.longitude}`]
-        let destinations = []
-        beachList.forEach(beach => {
-            destinations.push(`${beach.lat},${beach.lng}`)
-        })       
-        let travelMode = 'DRIVING'
+        // let origins = [`${this.props.latitude},${this.props.longitude}`]
+        // let destinations = []
+        // beachList.forEach(beach => {
+        //     destinations.push(`${beach.lat},${beach.lng}`)
+        // })       
+        // let travelMode = 'DRIVING'
 
-        // Instantiating Google's distance matrix service method which is made available on/by the GoogleAPIWrapper HOF 
-        const distService = new this.props.google.maps.DistanceMatrixService()
+        // // Instantiating Google's distance matrix service method which is made available on/by the GoogleAPIWrapper HOF 
+        // const distService = new this.props.google.maps.DistanceMatrixService()
         
-        distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
-            if (status === 'OK') {
+        // distService.getDistanceMatrix({origins, destinations, travelMode}, (res,status) => {
+        //     if (status === 'OK') {
         
-                // Create dists and distArr arrays to pick out numeric values from google's response
-                var dists = res.rows[0].elements
-                var distArr = []
-                for (var i = 0; i < dists.length; i++) {               
-                    distArr.push(dists[i].duration.value)       
-                }
+        //         // Create dists and distArr arrays to pick out numeric values from google's response
+        //         var dists = res.rows[0].elements
+        //         var distArr = []
+        //         for (var i = 0; i < dists.length; i++) {               
+        //             distArr.push(dists[i].duration.value)       
+        //         }
                     
-            } else {
-                console.log(status)
-            }
+        //     } else {
+        //         console.log(status)
+        //     }
         
-                // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
-                // our beachList array we've hardcoded.
-            const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))     
+        //         // Here we are merging the trip duration array returned from distance matrix and transposing those times onto 
+        //         // our beachList array we've hardcoded.
+        //     const mergedArray = nameArray.map((beach, i) => ({name:beach, dur:distArr[i]}))     
                
-                // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
-            const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )  
+        //         // Here we're sorting the mergedArray ascending by the objects values (duration in seconds in this case)
+        //     const sortedArray = mergedArray.sort(function (a,b) { return a.dur - b.dur} )  
                  
-                // Taking the first 5 closest beaches to user
-            const beachDurations = sortedArray.splice(0,5)           
-                // Setting the 5 closest beaches to user into state 
-            this.setState({
-                beaches: beachDurations,               
-            })
-            // this is a placeholder for future Redux-store functionality 
-            this.props.addBeaches({
-                beaches: beachDurations             
-            })                          
-        }) 
+        //         // Taking the first 5 closest beaches to user
+        //     const beachDurations = sortedArray.splice(0,5)           
+        //         // Setting the 5 closest beaches to user into state 
+        //     this.setState({
+        //         beaches: beachDurations,               
+        //     })
+        //     // this is a placeholder for future Redux-store functionality 
+        //     this.props.addBeaches({
+        //         beaches: beachDurations             
+        //     })                          
+        // }) 
     }
 
     // Checking if the state has updated & resetting isLoading value   

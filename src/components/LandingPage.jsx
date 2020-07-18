@@ -37,6 +37,7 @@ class LandingPage extends Component {
                 })
                     .then((response) => {
                     console.log('Response from POST call to backend: ', response)
+                    // Take the back-end's list of closest beaches and store it in Redux
                     this.props.addSearchBeaches({
                         searchBeaches: response.data.data
                     })
@@ -58,21 +59,6 @@ class LandingPage extends Component {
        });
     }
     }
-
-    // componentDidUpdate(prevState) {
-       
-    //     if (this.state !== prevState) {
-    //         console.log('State updated.. ')
-    //             // let origins = {
-    //             //     lat: this.state.lat,
-    //             //     lng: this.state.lng
-    //             // };
-    //             let lat = this.state.lat;
-    //             let lng = this.state.lng;
-                
-
-    //     }
-    //   }
 
  
 
