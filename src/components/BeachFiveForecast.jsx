@@ -20,7 +20,20 @@ class BeachFiveForecast extends Component {
     }
 
     componentDidMount() {
-     
+
+
+        axios.post('/api/v1/get-weather', {
+            fiveBeaches: this.props.fiveBeaches
+        })
+            .then(response => {
+                console.log(response.data)
+            }) 
+            .catch(error => console.log('There was an error: ', error))
+
+
+
+
+
         var beachWxArr = []
         this.props.fiveBeaches.map(beach => beachWxArr.push(beach.name)) 
         const apiKey = process.env.REACT_APP_WX_API_KEY
