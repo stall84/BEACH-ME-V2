@@ -15,7 +15,8 @@ class BeachFiveForecast extends Component {
             forecast2: null,
             forecast3: null,
             forecast4: null,
-            forecast5: null
+            forecast5: null,
+            fullForecastArr: null
         }
     }
 
@@ -26,7 +27,9 @@ class BeachFiveForecast extends Component {
             fiveBeaches: this.props.fiveBeaches
         })
             .then(response => {
-                console.log(response.data)
+                this.setState({
+                    fullForecastArr: response.data
+                })
             }) 
             .catch(error => console.log('There was an error: ', error))
 
