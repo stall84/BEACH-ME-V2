@@ -45,7 +45,7 @@ class LandingPage extends Component {
                 // After loading user's lat/lng into redux state above, we send an axios POST request up to our server
                 // with those same exact values. These will go directly into a mongoDB geoNear method to determine which beaches 
                 // in the database are closest to our user. 
-                axios.post('/api/v1/beaches', {
+                axios.post('https://mes-personal-site.herokuapp.com/api/v1/beaches', {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 })
@@ -66,7 +66,7 @@ class LandingPage extends Component {
 
     componentDidUpdate (prevState) {
             if (this.state.lat !== prevState.lat) {
-                axios.post('/api/v1/beaches', {
+                axios.post('https://mes-personal-site.herokuapp.com/api/v1/beaches', {
                     lat: this.state.lat,
                     lng: this.state.lng
                 })

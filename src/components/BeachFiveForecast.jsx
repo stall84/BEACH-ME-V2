@@ -22,7 +22,7 @@ class BeachFiveForecast extends Component {
     componentDidMount() {
 
 
-        axios.post('/api/v1/get-weather', {
+        axios.post('https://mes-personal-site.herokuapp.com/api/v1/get-weather', {
             fiveBeaches: this.props.fiveBeaches
         })
             .then(response => {
