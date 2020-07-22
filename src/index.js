@@ -12,8 +12,8 @@ import * as serviceWorker from './serviceWorker';
 // Initial Location of our Redux Store and Initial State
 // Hard-coded in coordinates for Little Five Points ATL until updated by compDidMount
 const initialState = {
-  latitude: 33.748995,
-  longitude: -84.387982,
+  latitude: null,
+  longitude: null,
   searchBeaches: null,
   beaches: null
 }
