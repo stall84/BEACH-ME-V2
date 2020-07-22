@@ -6,18 +6,32 @@ import Footer from './Footer';
 import Header from './Header';
 import './styles/LandingPage.css';
 import axios from 'axios';
+import Geocode from 'react-geocode';
+
+
+
+// Setup CSS using makeStyles Hook from Material UI
+
 
 
 class LandingPage extends Component {
 
+    
+
     constructor(props) {
         super(props) 
 
+        
+
         this.state = {
           lat: null,
-          lng: null
+          lng: null,
+          geocodeForm: null,
+          convertedCoords: null
         }
     }
+    
+    inputAddressValueRef = React.createRef()
 
     componentDidMount () {
         if (navigator.geolocation) {
@@ -45,23 +59,68 @@ class LandingPage extends Component {
                     .catch(error => {
                         console.log('Error posting coords: ', error)
                     })
-
-             
-             // This method of pushing the user's lat/long into state is working during 
-             // initial tests. Things I've found online though make me think it's an async call
-             // and might need some other proving logic other than the if statement at very beginning 
-            //  this.setState({
-            //      lat: position.coords.latitude,
-            //      lng: position.coords.longitude
-            //  })
-                
-        
+                 
        });
     }
     }
 
- 
+    componentDidUpdate (prevState) {
+            if (this.state.lat !== prevState.lat) {
+                axios.post('/api/v1/beaches', {
+                    lat: this.state.lat,
+                    lng: this.state.lng
+                })
+                    .then((response) => {
+                    console.log('** - Response from POST call to backend: ', response)
+                    // Take the back-end's list of closest beaches and store it in Redux
+                    this.props.addSearchBeaches({
+                        searchBeaches: response.data.data
+                    })
+                })
+                    .catch(error => {
+                        console.log('Error posting coords: ', error)
+                    })
+            }
+     
 
+    }
+
+    // Using geocode node module we're going to first configure with google api key and language. then run the fromAddress method to take
+    // Users address or zip and convert it to lat/lng to be stored into state/redux
+    geocode = (inputAddy) => {
+        Geocode.setApiKey(process.env.REACT_APP_GOOGLE_API_KEY);
+        Geocode.setLanguage('en');
+        Geocode.fromAddress(inputAddy)
+            .then(response => {
+                let { lat, lng } = response.results[0].geometry.location
+                console.log('HandleSubmit Geocode response: ', response)
+                // Add geocoder returned lat/lng to redux state and local state
+                this.props.addCoords({
+                    latitude: lat,
+                    longitude: lng
+                })
+                this.setState({
+                    lat: lat,
+                    lng: lng
+                })
+            }).catch(err => console.log('Error in HandleSubmit Geocode: ', err))
+    }
+
+    handleSubmit = (submitEvent) => {
+        submitEvent.preventDefault()               // On button click prevent default behavior, fire off geocode method with local state's address/zip,etc
+        let addyRefVal = this.inputAddressValueRef.current.value
+        alert('handleSubmit Fired!')
+        this.geocode(addyRefVal)
+        
+        
+    }
+
+    handleInput = (event) => {
+        this.setState({                             // Take form's text input of city/zip/address and immediately store in local state
+            geocodeForm: event.target.value
+        })
+    }
+    
     render() {
         return (
             <div className="container-fluid">
@@ -74,6 +133,14 @@ class LandingPage extends Component {
                 <h2>Click below to get BEACHED!</h2>
                 <div className="inputButtons">
                     <Link to="/main-map"><button type="button" className="btn btn-outline-warning btn-lg">PLZ BEACH ME!</button></Link>
+                </div>
+                <div>
+                    <form onSubmit={this.handleSubmit} style={{textAlign: 'center', marginBottom: '10rem'}}>
+                        <input style={{width: '300px', height: '60px', textAlign: 'center'}}type='text' ref={this.inputAddressValueRef} />
+                        <div id='altAddyButton'>
+                        <button style={{fontSize: '22px', width: '300px', height: '70px', textAlign: 'center'}} type='submit'  >Beach-Me-by-Addy</button>
+                        </div>
+                    </form>
                     
                 </div>
                 <Footer />
@@ -83,7 +150,10 @@ class LandingPage extends Component {
 }
 
 // Setting up React-Redux mappings (state/props)
-
+// addCoords will take the returns from either user's allowing browser built-in navigator geolocation lat/lng OR 
+// form-entered address/zip, etc and store them to the Redux state via reducer in index.js. Then, after the post request is sent up
+// to the backend, our backend will return the list of closest beaches found in our mongoDB database, and will store those to Redux state
+// via addSearchBeaches prop
 
 
  const mapDispatchToProps = dispatch => {
