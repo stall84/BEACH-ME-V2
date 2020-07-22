@@ -26,7 +26,7 @@ class MainMapContainer extends Component {
 
     componentDidMount() {
 
-        axios.post('/api/v1/get-trips', {
+        axios.post('https://mes-personal-site.herokuapp.com/api/v1/get-trips', {
             reduxLat: this.props.latitude,
             reduxLng: this.props.longitude,
             searchBeaches: this.props.searchBeaches

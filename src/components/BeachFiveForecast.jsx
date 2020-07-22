@@ -16,78 +16,32 @@ class BeachFiveForecast extends Component {
             forecast3: null,
             forecast4: null,
             forecast5: null,
-            fullForecastArr: null
         }
     }
 
     componentDidMount() {
 
 
-        axios.post('/api/v1/get-weather', {
+        axios.post('https://mes-personal-site.herokuapp.com/api/v1/get-weather', {
             fiveBeaches: this.props.fiveBeaches
         })
             .then(response => {
+                console.log('CompDidMnt Axios Res: ', response)
                 this.setState({
-                    fullForecastArr: response.data
+                    forecast1: response.data.data[0],
+                    forecast2: response.data.data[1],
+                    forecast3: response.data.data[2],
+                    forecast4: response.data.data[3],
+                    forecast5: response.data.data[4]
                 })
-            }) 
-            .catch(error => console.log('There was an error: ', error))
-
-
-
-
-
-        var beachWxArr = []
-        this.props.fiveBeaches.map(beach => beachWxArr.push(beach.name)) 
-        const apiKey = process.env.REACT_APP_WX_API_KEY
-        
-        // Setting all 5 weather api calls to constants. Attempting to change to https call for security 
-
-        const beach1forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[0]},&appid=${apiKey}`
-        const beach2forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[1]},&appid=${apiKey}`
-        const beach3forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[2]},&appid=${apiKey}`
-        const beach4forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[3]},&appid=${apiKey}`
-        const beach5forecast = `https://api.openweathermap.org/data/2.5/forecast?q=${beachWxArr[4]},&appid=${apiKey}`
-        
-        // Using await promise.all was not working during first build so stringing along promises for the axios calls
-      
-        axios.get(beach1forecast) 
-            .then((response) => {
-                this.setState({
-                    forecast1: response.data
-                })
-                return axios.get(beach2forecast)
-                .then((response) => {
-                    this.setState({
-                        forecast2: response.data
-                    })
-                    return axios.get(beach3forecast)
-                    .then((response) => {
-                        this.setState({
-                            forecast3: response.data
-                        })
-                        return axios.get(beach4forecast)
-                        .then((response) => {
-                            this.setState({
-                                forecast4: response.data
-                            })
-                            return axios.get(beach5forecast)
-                            .then((response) => {
-                                this.setState({
-                                    forecast5: response.data
-                                })
-                            })
-                        })
-                    })
-                })
-                
-            }).catch(err => {console.log(`Error retrieving forecast: ${err}`)})    
+            })
+            .catch(error => console.log('There was an error: ', error))  
      
     }
         
 
     render() {
-
+        
         if (this.state.forecast1 === null) {
             return null
         } else if (this.state.forecast2 === null) {
@@ -277,6 +231,7 @@ class BeachFiveForecast extends Component {
             </div>
         )
     }
+    
 }
 }
 

@@ -45,7 +45,7 @@ class LandingPage extends Component {
                 // After loading user's lat/lng into redux state above, we send an axios POST request up to our server
                 // with those same exact values. These will go directly into a mongoDB geoNear method to determine which beaches 
                 // in the database are closest to our user. 
-                axios.post('/api/v1/beaches', {
+                axios.post('https://mes-personal-site.herokuapp.com/api/v1/beaches', {
                     lat: position.coords.latitude,
                     lng: position.coords.longitude
                 })
@@ -66,7 +66,7 @@ class LandingPage extends Component {
 
     componentDidUpdate (prevState) {
             if (this.state.lat !== prevState.lat) {
-                axios.post('/api/v1/beaches', {
+                axios.post('https://mes-personal-site.herokuapp.com/api/v1/beaches', {
                     lat: this.state.lat,
                     lng: this.state.lng
                 })
@@ -77,6 +77,9 @@ class LandingPage extends Component {
                         searchBeaches: response.data.data
                     })
                 })
+                    .then(() => {
+                        this.props.history.push('/main-map')
+                    })
                     .catch(error => {
                         console.log('Error posting coords: ', error)
                     })
@@ -109,8 +112,10 @@ class LandingPage extends Component {
     handleSubmit = (submitEvent) => {
         submitEvent.preventDefault()               // On button click prevent default behavior, fire off geocode method with local state's address/zip,etc
         let addyRefVal = this.inputAddressValueRef.current.value
-        alert('handleSubmit Fired!')
-        this.geocode(addyRefVal)
+        this.geocode(addyRefVal);
+        alert('Alerted')
+        //this.props.history.push('/main-map')
+        
         
         
     }
@@ -138,7 +143,7 @@ class LandingPage extends Component {
                     <form onSubmit={this.handleSubmit} style={{textAlign: 'center', marginBottom: '10rem'}}>
                         <input style={{width: '300px', height: '60px', textAlign: 'center'}}type='text' ref={this.inputAddressValueRef} />
                         <div id='altAddyButton'>
-                        <button style={{fontSize: '22px', width: '300px', height: '70px', textAlign: 'center'}} type='submit'  >Beach-Me-by-Addy</button>
+                        <button style={{fontSize: '22px', width: '300px', height: '70px', textAlign: 'center'}} type='submit'  >Anonymous-Beach-Me-by-Addy</button>
                         </div>
                     </form>
                     
