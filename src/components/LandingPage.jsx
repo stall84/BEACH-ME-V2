@@ -113,8 +113,8 @@ class LandingPage extends Component {
         submitEvent.preventDefault()               // On button click prevent default behavior, fire off geocode method with local state's address/zip,etc
         let addyRefVal = this.inputAddressValueRef.current.value
         this.geocode(addyRefVal);
-        alert('Alerted')
-        //this.props.history.push('/main-map')
+        
+    
         
         
         
