@@ -77,6 +77,9 @@ class LandingPage extends Component {
                         searchBeaches: response.data.data
                     })
                 })
+                    .then(() => {
+                        this.props.history.push('/main-map')
+                    })
                     .catch(error => {
                         console.log('Error posting coords: ', error)
                     })
@@ -109,8 +112,10 @@ class LandingPage extends Component {
     handleSubmit = (submitEvent) => {
         submitEvent.preventDefault()               // On button click prevent default behavior, fire off geocode method with local state's address/zip,etc
         let addyRefVal = this.inputAddressValueRef.current.value
-        alert('handleSubmit Fired!')
-        this.geocode(addyRefVal)
+        this.geocode(addyRefVal);
+        alert('Alerted')
+        //this.props.history.push('/main-map')
+        
         
         
     }
@@ -138,7 +143,7 @@ class LandingPage extends Component {
                     <form onSubmit={this.handleSubmit} style={{textAlign: 'center', marginBottom: '10rem'}}>
                         <input style={{width: '300px', height: '60px', textAlign: 'center'}}type='text' ref={this.inputAddressValueRef} />
                         <div id='altAddyButton'>
-                        <button style={{fontSize: '22px', width: '300px', height: '70px', textAlign: 'center'}} type='submit'  >Beach-Me-by-Addy</button>
+                        <button style={{fontSize: '22px', width: '300px', height: '70px', textAlign: 'center'}} type='submit'  >Anonymous-Beach-Me-by-Addy</button>
                         </div>
                     </form>
                     
